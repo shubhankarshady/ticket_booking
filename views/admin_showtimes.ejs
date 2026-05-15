@@ -1,0 +1,65 @@
+<link rel="stylesheet" href="/style.css">
+<nav>
+  <a href="/admin">⬅ Back to Admin Dashboard</a>
+</nav>
+
+<h1>Showtimes for <%= movie.title %></h1>
+
+<!-- ===== Add Showtime Form ===== -->
+<h2>Add New Showtime</h2>
+
+<form action="/admin/movies/<%= movie.movie_id %>/showtimes/add" method="POST">
+  <label>Screen ID:</label>
+  <input type="number" name="screen_id" required><br>
+
+  <label>Start Time:</label>
+  <input type="datetime-local" name="start_time" required><br>
+
+  <label>End Time:</label>
+  <input type="datetime-local" name="end_time" required><br>
+
+  <label>Price:</label>
+  <input type="number" name="price" step="0.01" placeholder="Default 200"><br>
+
+  <button type="submit">Add Showtime</button>
+</form>
+
+<hr>
+
+<!-- ===== Current Showtimes List ===== -->
+<h2>Existing Showtimes</h2>
+
+<% if (showtimes.length === 0) { %>
+  <p>No showtimes added yet for this movie.</p>
+<% } else { %>
+  <table border="1" cellpadding="6" cellspacing="0">
+    <thead>
+      <tr>
+        <th>Showtime ID</th>
+        <th>Screen ID</th>
+        <th>Start Time</th>
+        <th>End Time</th>
+        <th>Price</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% showtimes.forEach(st => { %>
+        <tr>
+          <td><%= st.showtime_id %></td>
+          <td><%= st.screen_id %></td>
+          <td><%= new Date(st.start_time).toLocaleString() %></td>
+          <td><%= new Date(st.end_time).toLocaleString() %></td>
+          <td>₹<%= st.price %></td>
+          <td><%= st.status %></td>
+          <td>
+            <form action="/admin/showtimes/<%= st.showtime_id %>/delete" method="POST" style="display:inline;">
+              <button type="submit" onclick="return confirm('Delete this showtime?')">Delete</button>
+            </form>
+          </td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+<% } %>

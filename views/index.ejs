@@ -1,0 +1,15 @@
+<link rel="stylesheet" href="/style.css">
+<nav>
+  <a href="/movies">Movies</a> |
+  <a href="/users/history">History</a> |
+  <a href="/users/logout">Logout</a>
+</nav>
+
+<h1>Movies</h1>
+<ul>
+  <% movies.forEach(movie => { %>
+    <li>
+      <a href="/showtimes/<%= movie.movie_id %>"><%= movie.title %></a>
+    </li>
+  <% }) %>
+</ul>

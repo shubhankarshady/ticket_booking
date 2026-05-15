@@ -1,0 +1,241 @@
+/* ===== Global Reset ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", "Segoe UI", sans-serif;
+}
+
+body {
+  background-color: #f7f9fc;
+  color: #222;
+  line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 1rem 4rem;
+  min-height: 100vh;
+}
+
+/* ===== Navbar ===== */
+nav {
+  width: 100%;
+  max-width: 1000px;
+  background: #ffffff;
+  padding: 1rem 2rem;
+  margin-bottom: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  text-align: center;
+}
+
+nav a {
+  color: #007bff;
+  text-decoration: none;
+  margin: 0 1rem;
+  font-weight: 500;
+  transition: color 0.25s ease;
+}
+
+nav a:hover {
+  color: #0056b3;
+}
+
+/* ===== Headings ===== */
+h1, h2 {
+  color: #111;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+h1 {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+h2 {
+  font-size: 1.3rem;
+  margin-top: 2rem;
+  border-left: 4px solid #007bff;
+  padding-left: 10px;
+  text-align: left;
+}
+
+/* ===== Forms ===== */
+form {
+  background: #fff;
+  padding: 1.5rem 2rem;
+  border-radius: 10px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+  max-width: 500px;
+  width: 100%;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+form input,
+form button {
+  width: 100%;
+  padding: 0.7rem 1rem;
+  margin: 0.6rem 0;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+form input:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+form button {
+  background: #007bff;
+  color: white;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: background 0.25s ease;
+}
+
+form button:hover {
+  background: #0056b3;
+}
+
+/* ===== Links ===== */
+a {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* ===== Lists & Movie Cards ===== */
+ul {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+  max-width: 900px;
+  width: 100%;
+}
+
+li {
+  background: #fff;
+  border-radius: 10px;
+  padding: 1rem;
+  text-align: center;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+li:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+li form {
+  display: inline;
+}
+
+li a {
+  display: inline-block;
+  margin-top: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: #007bff;
+  color: white;
+  border-radius: 6px;
+  transition: background 0.25s ease;
+}
+
+li a:hover {
+  background: #0056b3;
+}
+
+/* ===== Tables ===== */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  max-width: 900px;
+  margin: 2rem auto;
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+}
+
+th, td {
+  padding: 1rem;
+  text-align: center;
+  border-bottom: 1px solid #eee;
+}
+
+th {
+  background-color: #007bff;
+  color: white;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
+}
+
+tr:hover td {
+  background-color: #f5f9ff;
+}
+
+/* ===== Seats Page ===== */
+#seatContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+  gap: 10px;
+  max-width: 600px;
+  margin: 2rem auto;
+}
+
+#seatContainer label {
+  background: #fff;
+  padding: 10px;
+  border-radius: 6px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+  transition: background 0.2s ease;
+  text-align: center;
+}
+
+#seatContainer input[type="checkbox"]:checked + span {
+  background: #007bff;
+  color: white;
+}
+
+#seatContainer input[type="checkbox"]:disabled + span {
+  background: #ccc;
+  color: #666;
+  cursor: not-allowed;
+}
+
+/* ===== Messages ===== */
+p {
+  margin: 1.5rem 0;
+  color: #555;
+  text-align: center;
+  font-size: 1rem;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 600px) {
+  form {
+    padding: 1rem;
+  }
+  th, td {
+    padding: 0.7rem;
+    font-size: 0.9rem;
+  }
+  nav {
+    padding: 0.8rem 1rem;
+  }
+  ul {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,35 @@
+<link rel="stylesheet" href="/style.css">
+<nav>
+  <a href="/movies">Movies</a> |
+  <a href="/users/history">History</a> |
+  <a href="/users/logout">Logout</a>
+</nav>
+
+<h1>Booking History</h1>
+
+<% if (bookings.length === 0) { %>
+  <p>No bookings yet.</p>
+<% } else { %>
+  <table border="1" cellpadding="8">
+    <thead>
+      <tr>
+        <th>Movie</th>
+        <th>Showtime</th>
+        <th>Total Amount</th>
+        <th>Status</th>
+        <th>Booked At</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% bookings.forEach(b => { %>
+        <tr>
+          <td><%= b.movie_title %></td>
+          <td><%= b.start_time.toLocaleString ? b.start_time.toLocaleString() : b.start_time %></td>
+          <td><%= b.total_amount %></td>
+          <td><%= b.booking_status %></td>
+          <td><%= b.booked_at.toLocaleString ? b.booked_at.toLocaleString() : b.booked_at %></td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+<% } %>

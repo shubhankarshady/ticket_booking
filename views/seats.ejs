@@ -1,0 +1,56 @@
+<link rel="stylesheet" href="/style.css">
+<nav>
+  <a href="/movies">Movies</a> |
+  <a href="/users/history">History</a> |
+  <a href="/users/logout">Logout</a>
+</nav>
+
+<h1>Select Seats</h1>
+
+<form id="bookingForm" action="/bookings" method="POST">
+  <input type="hidden" name="showtime_id" value="<%= showtimeId %>">
+  <input type="hidden" name="seat_ids" id="seat_ids">
+
+  <div id="seatContainer">
+    <% seats.forEach(seat => { %>
+      <% if (seat.status === 'sold') { %>
+        <label style="display: inline-block; margin: 5px; opacity: 0.5;">
+          <input type="checkbox" disabled> <%= seat.seat_number %> (sold)
+        </label>
+      <% } else { %>
+        <label style="display: inline-block; margin: 5px;">
+         <input
+           type="checkbox"
+           class="seat-checkbox"
+           data-id="<%= seat.show_seat_id %>"
+          >
+
+          <%= seat.seat_number %>
+        </label>
+      <% } %>
+    <% }) %>
+  </div>
+
+  <br><br>
+  <button type="submit">Book Selected Seats</button>
+</form>
+
+<script>
+  const seatCheckboxes = document.querySelectorAll('.seat-checkbox');
+  const seatIdsInput = document.getElementById('seat_ids');
+
+  seatCheckboxes.forEach(cb => {
+    cb.addEventListener('change', () => {
+      const selectedIds = Array.from(document.querySelectorAll('.seat-checkbox:checked'))
+        .map(c => c.dataset.id);
+      seatIdsInput.value = JSON.stringify(selectedIds);
+    });
+  });
+
+  document.getElementById("bookingForm").addEventListener("submit", e => {
+    if (!seatIdsInput.value || JSON.parse(seatIdsInput.value).length === 0) {
+      e.preventDefault();
+      alert("Please select at least one seat!");
+    }
+  });
+</script>

@@ -1,0 +1,26 @@
+<link rel="stylesheet" href="/style.css">
+<h1>Admin Panel</h1>
+
+<h2>Add New Movie</h2>
+<form action="/admin/movies/add" method="POST">
+  <input type="text" name="title" placeholder="Title" required>
+  <input type="text" name="genre" placeholder="Genre">
+  <input type="number" name="duration_minutes" placeholder="Duration (min)">
+  <input type="text" name="language" placeholder="Language">
+  <button type="submit">Add Movie</button>
+</form>
+
+<hr>
+
+<h2>All Movies</h2>
+<ul>
+  <% movies.forEach(movie => { %>
+    <li>
+      <%= movie.title %> (<%= movie.language %>)
+      <form action="/admin/movies/<%= movie.movie_id %>/delete" method="POST" style="display:inline;">
+        <button type="submit">🗑 Delete</button>
+      </form>
+      <a href="/admin/movies/<%= movie.movie_id %>/showtimes">🎬 Showtimes</a>
+    </li>
+  <% }) %>
+</ul>

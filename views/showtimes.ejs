@@ -1,0 +1,28 @@
+<link rel="stylesheet" href="/style.css">
+<nav>
+  <a href="/movies">Movies</a> |
+  <a href="/users/history">History</a> |
+  <a href="/users/logout">Logout</a>
+</nav>
+
+<h1>Showtimes for Movie: <%= movieTitle %></h1>
+
+<% if (groupedByTheatre && Object.keys(groupedByTheatre).length > 0) { %>
+  <% Object.keys(groupedByTheatre).forEach(theatre => { %>
+    <h2>Theater: <%= theatre %></h2>
+    <ul>
+      <% groupedByTheatre[theatre].forEach(st => { %>
+        <li>
+          Screen: <%= st.screen_name %> |
+          Time: <%= new Date(st.start_time).toLocaleString() %> —
+          <%= new Date(st.end_time).toLocaleTimeString() %> |
+          Price: ₹<%= st.price %>
+          <a href="/seats/<%= st.showtime_id %>">Book Now</a>
+        </li>
+      <% }) %>
+    </ul>
+  <% }) %>
+<% } else { %>
+  <p>No showtimes available.</p>
+<% } %>
+
